@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+int main() {
+	
+	double totalGrades = 0, grade;
+	const int numGrades = 5;
+	for (int count = 1; count <= 5; count++) {
+		cout << "enter grade: ";
+		cin >> grade;
+		totalGrades = totalGrades + grade;
+	}
+	double average = totalGrades / numGrades;
+	cout << "average is: " << average << endl;
+
+
+
+
+
+
+
+}
