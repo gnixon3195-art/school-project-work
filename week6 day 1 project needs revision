@@ -1,0 +1,31 @@
+using namespace std;
+#include <iostream>
+#include <iomanip>
+#include <string>
+int main() {
+	int choice;
+	do {
+		cout << "1 Display hello" << endl;
+		cout << "2. display goodbye" << endl;
+		cout << "3. exit" << endl;
+		cout << "enter choice " cin; >> choice;
+
+		if (cin.fail)())) {
+			cout << "error: please enter a valid number." << endl;
+			cin.clear();
+			cin.ignore(10000, '\n');
+			continue;
+		}
+		if (choice < 1 | | choice>3) {
+			cout << "Error choice must be 1, 2, or 3."
+		}
+
+		if (choice == 1) cout << "hello" << endl;
+		else if (choice == 2) cout << "goodbye!" << endl;
+	} while (choice != 3);
+	cout << endl << "end of program." << endl;
+
+	
+
+	return0;
+}
