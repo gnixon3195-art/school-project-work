@@ -1,0 +1,18 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+int main() {
+	double grade, average, total = 0.0, counter = 1;
+	while (counter <= 5)
+	{
+		cout << "Enter grade" << counter << ":";
+		cin >> grade;
+		total = total + grade;
+
+		counter = counter + 1;
+	}
+
+	average = total / 5;
+	cout << "average is" << average << endl;
+}
