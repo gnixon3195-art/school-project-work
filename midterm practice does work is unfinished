@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+int main() {
+	int choice;
+	int testScore;
+	int average;
+
+	do {
+		cout << "1. add number" << endl;
+		cout << "2 calculate average" << endl;
+		cout << "3.exit" << endl;
+		cout << "enter your choice"; cin >> choice;
+		if (choice < 1 || choice > 3) {
+			cout << "error choise MUST be 1 2 or 3" << endl;
+			continue;
+		}
+		if (cin.fail()) {
+			cout << "error: please enter a valid number." << endl;
+			cin.clear(); cin.ignore(10000, '\n');
+			continue;
+		}
+		
+		if (choice == 2) {
+			
+		}
+
+		cout << "number added" << endl;
+
+	} while (choice != 3);
+	return 0;
+}
