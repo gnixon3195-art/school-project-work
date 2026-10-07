@@ -1,0 +1,123 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    // Constant for efficiency bonus
+    const double EFFICIENCY_BONUS = 0.10; // 10% bonus for average
+    
+    // Variables for accumulators and counters
+    double studyTotal = 0.0, workTotal = 0.0, leisureTotal = 0.0;
+    int durationCount = 0;
+    int choice;
+
+    // Menu loop
+    do {
+        // Display menu
+        cout << "\nTask Time Tracker Menu:" << endl;
+        cout << "1. Add a task duration" << endl;
+        cout << "2. Display time summary" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Enter your choice: ";
+
+        // Read menu choice
+        cin >> choice;
+
+        // Handle non-numeric menu input
+        if (cin.fail()) {
+            cout << "Error: Please enter a valid number." << endl;
+            cin.clear();
+            cin.ignore(10000, '\n');
+            continue;
+        }
+
+        // Process menu choice
+        switch (choice) {
+            case 1: { // Add task duration
+
+                // Validate durationCount < 5
+                if (durationCount >= 5) {
+                    cout << "Error: Maximum of 5 durations reached." << endl;
+                    break;
+                }
+
+                // Prompt for category
+                char category;
+                cout << "Enter category (S for Study, W for Work, L for Leisure): ";
+                cin >> category;
+                category = toupper(category);
+
+                // Validate category
+                if (category != 'S' && category != 'W' && category != 'L') {
+                    cout << "Error: Invalid category. Use S, W, or L." << endl;
+                    break;
+                }
+
+                // Prompt for duration
+                double duration;
+                cout << "Enter task duration (0-24 hours): ";
+                cin >> duration;
+
+                // Validate numeric duration
+                if (cin.fail()) {
+                    cout << "Error: Duration must be numeric." << endl;
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                    break;
+                }
+
+                // Validate duration range
+                if (duration < 0 || duration > 24) {
+                    cout << "Error: Duration must be between 0 and 24." << endl;
+                    break;
+                }
+
+                // Add duration to correct accumulator using switch
+                switch (category) {
+                    case 'S': studyTotal += duration; break;
+                    case 'W': workTotal += duration; break;
+                    case 'L': leisureTotal += duration; break;
+                }
+
+                durationCount++;
+                cout << "Duration added (" << durationCount << "/5)." << endl;
+                break;
+            }
+
+            case 2: { // Display summary
+                if (durationCount == 0) {
+                    cout << "\nTime Summary:\nNo durations recorded." << endl;
+                    break;
+                }
+
+                // Calculate totals
+                double total = studyTotal + workTotal + leisureTotal;
+                double average = total / durationCount;
+                double adjustedAvg = average * (1 + EFFICIENCY_BONUS);
+
+                // Display formatted table
+                cout << fixed << setprecision(2);
+                cout << "\nTime Summary:\n";
+                cout << setw(12) << "Durations:"     << setw(10) << durationCount << endl;
+                cout << setw(12) << "Study:"         << setw(10) << studyTotal << endl;
+                cout << setw(12) << "Work:"          << setw(10) << workTotal << endl;
+                cout << setw(12) << "Leisure:"       << setw(10) << leisureTotal << endl;
+                cout << setw(12) << "Total:"         << setw(10) << total << endl;
+                cout << setw(12) << "Average:"       << setw(10) << average << endl;
+                cout << setw(12) << "Adjusted Avg:"  << setw(10) << adjustedAvg << endl;
+
+                break;
+            }
+
+            case 3:
+                cout << "Program ended." << endl;
+                break;
+
+            default:
+                cout << "Error: Choice must be 1, 2, or 3." << endl;
+                break;
+        }
+    } while (choice != 3);
+
+    return 0;
+}
